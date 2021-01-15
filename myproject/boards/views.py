@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
+from django.urls import reverse
 
 def home(request):
     boards = Board.objects.all()
