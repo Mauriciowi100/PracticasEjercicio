@@ -50,4 +50,10 @@ urlpatterns = [
     name='password_change_done'),
     re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.topic_posts, name='topic_posts'),
     re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/reply/$', views.reply_topic, name='reply_topic'),
+    path('new_post/', views.new_post, name='new_post'),
+    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/posts/(?P<post_pk>\d+)/edit/$',
+        views.PostUpdateView.as_view(), name='edit_post'),
+    re_path(r'^$', views.BoardListView.as_view(), name='home'),
+    re_path(r'^boards/(?P<pk>\d+)/topics/(?P<topic_pk>\d+)/$', views.PostListView.as_view(), name='topic_posts'),
+    re_path(r'^settings/account/$', accounts_views.UserUpdateView.as_view(), name='my_account'),
 ]
