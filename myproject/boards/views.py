@@ -124,16 +124,11 @@ class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
     template_name = 'topic_posts.html'
-    paginate_by = 20
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
-
-        session_key = 'viewed_topic_{}'.format(self.topic.pk)  # <-- here
-        if not self.request.session.get(session_key, False):
-            self.topic.views += 1
-            self.topic.save()
-            self.request.session[session_key] = True           # <-- until here
-
+        self.topic.views += 1
+        self.topic.save()
         kwargs['topic'] = self.topic
         return super().get_context_data(**kwargs)
 
